@@ -1,6 +1,8 @@
 ﻿using OpenQA.Selenium;
 using SeleniumUndetectedChromeDriver;
 using System.Windows.Forms;
+using Keys = OpenQA.Selenium.Keys;
+
 namespace gptSiteBuilder;
 
 public class gptSeleniumProvider : IGPTServiceProvider
@@ -46,10 +48,25 @@ public class gptSeleniumProvider : IGPTServiceProvider
        Thread.Sleep(3000);
         while (_driver.FindElements(pageElements.StopGeneration_btn).Count >0) //TODO: warning might me skipped
         {
+            Thread.Sleep(1000);
             if (_driver.FindElements(pageElements.StopGeneration_btn).Count == 0) break;
           
         }
-        _driver.FindElements(pageElements.copyFullMassage_btn).Last().Click();
+        Thread.Sleep(1000);
+        try
+        {
+            _driver.FindElements(pageElements.copyFullMassage_btn).Last().Click();
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("Error: " + e.Message);
+            Console.BackgroundColor = ConsoleColor.Red;
+            Console.WriteLine("OPEN BROWSER AND/OR SCROLL DOWN  and press enter when you are done");
+            Console.ReadLine();
+            _driver.FindElements(pageElements.copyFullMassage_btn).Last().Click();
+
+        }
+
         return ClipBoardExtractor.GetClipboardText();
     }
 
