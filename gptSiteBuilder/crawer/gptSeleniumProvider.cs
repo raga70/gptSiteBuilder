@@ -60,7 +60,7 @@ public class gptSeleniumProvider : IGPTServiceProvider
         catch (Exception e)
         {
             Console.WriteLine("Error: " + e.Message);
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine("OPEN BROWSER AND/OR SCROLL DOWN  and press enter when you are done");
             Console.ReadLine();
             _driver.FindElements(pageElements.copyFullMassage_btn).Last().Click();

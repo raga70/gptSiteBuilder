@@ -17,13 +17,13 @@ public class SiteBuilder
     {
         this.websiteName = websiteName;
 
-        System.Diagnostics.Process.Start($"CMD.exe",
-            $"/C npx create-react-app {websiteName} && cd {websiteName}  && npm install react-router-dom");
-
-
+       // System.Diagnostics.Process.Start($"CMD.exe",
+         //   $"/C npx create-react-app {websiteName} && cd {websiteName}  && npm install react-router-dom");
+    
+        
         string prePrompt = "You will be generating the code for a react app. the website is about: " +
                            websiteDescription + $"and is named {websiteName} " + "" +
-                           " start by listing the page names  you will be generating, please as a response reply ONLY  with the page names enclosed in ``` and SEPARATED BY COMMAS";
+                           " start by listing the page names  you will be generating, please as a response reply ONLY  with the page names enclosed in ``` and SEPARATED BY COMMAS, NOT NUMBERED , NOT NUMBERED";
 
 
         string resp = _gptServiceProvider.Prompt(prePrompt);
@@ -57,7 +57,7 @@ public class SiteBuilder
     void GenerateInitialBaseFilesForReact()
     {
         string prompt =
-            "generate the code for App.js by stating the file name and enclosing the code in ```  also include ./App.css  please do not generate any other output  generate only the code for the App.js file";
+            "generate the code for App.js by stating the file name and enclosing the code in ```  also include ./App.css  please do not generate any other output  generate only the code for the App.js file also add a navbar with links to all the pages you have generated ";
         string resp2 = _gptServiceProvider.Prompt(prompt);
         string extractedCode =
             resp2.Substring(resp2.IndexOf("```") + 3, resp2.LastIndexOf("```") - resp2.IndexOf("```") - 3);
