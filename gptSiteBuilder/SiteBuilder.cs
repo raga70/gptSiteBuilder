@@ -22,8 +22,8 @@ public class SiteBuilder
     
         
         string prePrompt = "You will be generating the code for a react app. the website is about: " +
-                           websiteDescription + $"and is named {websiteName} " + "" +
-                           " start by listing the page names  you will be generating, please as a response reply ONLY  with the page names enclosed in ``` and SEPARATED BY COMMAS, NOT NUMBERED , NOT NUMBERED";
+                           websiteDescription + $" and is named {websiteName} " + "" +
+                           " start by listing the page names  you will be generating, please as a response reply ONLY  with the page names enclosed in ``` and SEPARATED BY COMMAS, NOT NUMBERED , NOT NUMBERED !!!";
 
 
         string resp = _gptServiceProvider.Prompt(prePrompt);
